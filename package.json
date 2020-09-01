@@ -1,0 +1,28 @@
+{
+  "name": "fs-search-worker",
+  "version": "1.0.0",
+  "description": "JS worker implementation of file system search",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glaunay/fs-search-worker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glaunay/fs-search-worker/issues"
+  },
+  "homepage": "https://github.com/glaunay/fs-search-worker#readme",
+  "devDependencies": {
+    "@types/node": "^14.6.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@types/glob": "^7.1.3",
+    "glob": "^7.1.6"
+  }
+}
