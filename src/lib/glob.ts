@@ -1,30 +1,31 @@
-import {Glob} from "glob";
-type searcFn = (patt:string, loc:string) => Promise<any>;
-function searchFn(pattern:string, loc:string) {
-    let p = new Promise( (resolve, reject) => {
-        console.log("WORKER starts",pattern, loc );
-        let mg = new Glob(pattern, {'cwd' : loc}, (err, data)=>{
-            if (err) 
-                console.log("PWET", err)
-            if(data)
-                console.log("Twep (",pattern, loc, ")", data)
-            resolve("ZOOM");
+import {glob} from "glob";
+type searchFn = (patt:string, loc:string) => Promise<any>;
+async function searchFn(pattern:string, loc:string) {
+    let p:Promise<string[]> = new Promise( (resolve, reject) => {
+        //console.log(`WORKER starts ${loc}/**/${pattern}*`);
+        glob(`${loc}/**/${pattern}*`, function (err:any, fsElem:string[]) {
+            if(err)
+                reject(err);
+            else
+                resolve(fsElem);
         });
     });
     return p;
 }
 
 // Startin worker
-
-const patt = "**/*" + process.argv[2] + "*";
+//console.log("WORKER args" + process.argv);
+const patt = process.argv[2];
 const searchPool:Promise<any>[] = process.argv.slice(3).map(
     (cLoc:string, i:Number) => { return searchFn(patt, cLoc); }
 );
 (<any>process).send({'type': 'status', 'data' : 'searching start'});
 
 Promise.all(searchPool).then( (values) => {
-    console.log("WORKER resolved w/ ");
+    /*
+    console.log("WORKER asyncPOOL resolved w/ ");
     console.dir(values);
+    */
     // Hacky
     (<any>process).send({ 'type': 'results', 'data' : values });
 }

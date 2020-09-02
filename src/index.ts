@@ -2,11 +2,13 @@ import { fork } from "child_process";
 export type SearchFn = (...searchParam: string[]) => Promise<any>;
 
 export async function SearchFn(...searchParam: string[]) {
-   let ChildProcess = fork('./build/lib/glob.js', [...searchParam]);
-    ChildProcess.on('found', (m) => {
-        console.log('Found w/ data: ', m);
-    })
-    .on('notFound', (m) => {
-        console.log('Not found w/ data', m);
-    })
-};
+    return new Promise ( (resolve, reject)=>{
+        let ChildProcess = fork('./build/lib/glob.js', [...searchParam]);
+        ChildProcess.on('message', (d:{}) => {
+            if('type' in d)
+                if(d['type'] === 'results')
+                    resolve(d['data']);
+            //console.log('Found w/ data: ', d);
+        })
+    });
+}
