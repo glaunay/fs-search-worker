@@ -6,7 +6,7 @@ One worker process is spawn per function call.
 ## Usage
 ```js
 import  {SearchFn} from 'fs-search-worker';
-let results = await SearchFn(filePattern1, '/path/to/1', , ..., '/path/to/1');
+let results = await SearchFn(filePattern, '/path/to/1', , ..., '/path/to/1');
 ```
 
 `results` is a list preserving the order of supplied locations, where each entry contains the match of the corresponding location.
