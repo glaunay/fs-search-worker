@@ -1,6 +1,6 @@
 {
   "name": "fs-search-worker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JS worker implementation of file system search",
   "main": "index.js",
   "scripts": {
