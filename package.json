@@ -2,7 +2,7 @@
   "name": "fs-search-worker",
   "version": "1.0.2",
   "description": "JS worker implementation of file system search",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
