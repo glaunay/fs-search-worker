@@ -3,7 +3,7 @@ type searchFn = (patt:string, loc:string) => Promise<any>;
 async function searchFn(pattern:string, loc:string) {
     let p:Promise<string[]> = new Promise( (resolve, reject) => {
         //console.log(`WORKER starts ${loc}/**/${pattern}*`);
-        glob(`${loc}/**/${pattern}*`, function (err:any, fsElem:string[]) {
+        glob(`${loc}/**/*${pattern}*`, function (err:any, fsElem:string[]) {
             if(err)
                 reject(err);
             else

@@ -6,16 +6,16 @@ One worker process is spawn per function call.
 ## Usage
 ```js
 import  {SearchFn} from 'fs-search-worker';
-let results = await SearchFn('/path/to/root', 'filePattern1, ..., 'filePatternN');
+let results = await SearchFn(filePattern1, '/path/to/1', , ..., '/path/to/1');
 ```
 
-`results` is a list preserving the order of supplied patterns, where each entry contains the match of the corresponding pattern.
+`results` is a list preserving the order of supplied locations, where each entry contains the match of the corresponding location.
 
 ## Small testing script
 
 ```sh
 node build/test-search.js index.js /path/to/fs-search-worker /path/to/fs-search-worker/build
-Looking for index.js in /path/to/fs-search-worker /Users/guillaumelaunay/work/DVL/Js/fs-search-worker/build
+Looking for ndex.js in /path/to/fs-search-worker /Users/guillaumelaunay/work/DVL/Js/fs-search-worker/build
 test completed [
   [
     '/path/to/fs-search-worker/build/index.js',
