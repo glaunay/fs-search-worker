@@ -3,7 +3,7 @@ export type SearchFn = (...searchParam: string[]) => Promise<any>;
 
 export async function SearchFn(...searchParam: string[]) {
     return new Promise ( (resolve, reject)=>{
-        let ChildProcess = fork('./build/lib/glob.js', [...searchParam]);
+        let ChildProcess = fork(`${__dirname}/lib/glob.js`, [...searchParam]);
         ChildProcess.on('message', (d:{}) => {
             if('type' in d)
                 if(d['type'] === 'results')
